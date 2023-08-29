@@ -8,9 +8,10 @@ const User = g.model('User', {
   githubUrl: g.url().optional(),
   linkedInUrl: g.url().optional(),
   projects: g.relation(() => Project).list().optional(),
-}).auth((rules) => {
-  rules.public().read()
 })
+// .auth((rules) => {
+//   rules.public().read()
+// })
 
 const Project = g.model('Project', {
   title: g.string().length({ min: 3 }),
