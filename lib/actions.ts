@@ -19,21 +19,27 @@ const client = new GraphQLClient(apiUrl);
 
 const makeGraphQLRequest = async (query: string, variables = {}) => {
   try {
-    return await client.request(query,variables)
+    return await client.request(query, variables);
   } catch (error) {
     throw error;
   }
 };
 
-export const getUser = (email:string) => {
-    return makeGraphQLRequest(getUserQuery, {email})
-}
+export const getUser = (email: string) => {
+  client.setHeader("x-api-key", apiKey);
+  return makeGraphQLRequest(getUserQuery, { email });
+};
 
-export const createUser = (name:string,email:string, avatarUrl:string) => {
-    const variables = {
-        input: {
-            name,email,avatarUrl
-        }
-    }
-    return makeGraphQLRequest(createUserMutation,variables)
-}
+export const createUser = (name: string, email: string, avatarUrl: string) => {
+  client.setHeader("x-api-key", apiKey);
+
+  const variables = {
+    input: {
+      name: name,
+      email: email,
+      avatarUrl: avatarUrl
+    },
+  };
+  
+  return makeGraphQLRequest(createUserMutation, variables);
+};

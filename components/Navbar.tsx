@@ -5,13 +5,17 @@ import AuthProviders from "./AuthProviders";
 import { getCurrentUser } from "@/lib/session";
 
 const Navbar = async () => {
-  const session = await getCurrentUser;
+  const session = await getCurrentUser();
 
   return (
     <nav className="flexBetween navbar">
       <div className="flex-1 flexStart gap-10">
         <Link href="/">
-          <Image src="/logo.png" width={115} height={43} alt="Prominence" />
+          <Image src="/logo.png" 
+          width={115} 
+          height={43} 
+          alt="Prominence" 
+          />
         </Link>
         <ul className="xl:flex hidden text-small gap-7">
           {NavLinks.map((link) => (
@@ -35,9 +39,7 @@ const Navbar = async () => {
               />
             )}
 
-            <Link href='/create-project'>
-              Share Work
-            </Link>
+            <Link href="/create-project">Share Work</Link>
           </>
         ) : (
           <AuthProviders />
